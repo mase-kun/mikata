@@ -254,7 +254,15 @@
             color: #ff5757;
         }
 
-        /* 計算ボタン */
+        /* 計算ボタン（sticky） */
+        .calculate-btn-wrapper {
+            position: sticky;
+            bottom: 20px;
+            z-index: 100;
+            padding: 0;
+            margin-top: 10px;
+        }
+
         .calculate-btn {
             width: 100%;
             padding: 18px;
@@ -1196,9 +1204,11 @@
                     </div>
                 </div>
 
-                <button class="calculate-btn" onclick="calculate()">
-                    💡 シミュレーション実行
-                </button>
+                <div class="calculate-btn-wrapper">
+                    <button class="calculate-btn" onclick="calculate()">
+                        💡 シミュレーション実行
+                    </button>
+                </div>
             </div>
 
             <input type="hidden" id="numChildren" value="2">
@@ -2448,19 +2458,10 @@
                                     <span class="unit-label">年</span>
                                 </div>
                             </div>
-                            <div class="input-group">
-                                <div class="input-label">
-                                    運用期間
-                                    <span class="help-icon" data-tip="積立投資の運用期間（期間終了後は利回り0%）">?</span>
-                                </div>
-                                <div class="input-wrapper">
-                                    <input type="number" id="monthlyInvYears" value="40" min="0" max="60">
-                                    <span class="unit-label">年</span>
-                                </div>
-                            </div>
+                            <div class="input-group"></div>
                         </div>
                         <p style="font-size: 12px; color: #666; margin: 8px 0 0 0;">
-                            ℹ️ 積立期間終了後も運用期間内は利回りが継続。運用期間終了後は利回り0%で保持。
+                            ℹ️ 積立期間中は利回りが適用されます。積立期間終了後は利回り0%の貯蓄として保持されます。
                         </p>
                     </div>
                     
@@ -2914,7 +2915,7 @@
             const monthlyInvestment = parseFloat(document.getElementById('monthlyInvestment').value);
             const monthlyReturn = parseFloat(document.getElementById('monthlyReturn').value) / 100;
             const investmentYears = parseInt(document.getElementById('investmentYears').value); // 積立期間
-            const monthlyInvYears = parseInt(document.getElementById('monthlyInvYears').value) || 40; // 運用期間
+            const monthlyInvYears = investmentYears; // 運用期間 = 積立期間（積立終了後は利回り0%）
 
             // ヘルパー関数
             const getValueOrZero = (id) => {
