@@ -126,8 +126,9 @@
         }
 
         .preset-btn:hover {
-            background: #1a3a5c;
+            background: #ff5757;
             color: white;
+            border-color: #ff5757;
             transform: translateY(-2px);
         }
 
@@ -255,7 +256,7 @@
             min-width: 60px;
             text-align: right;
             font-weight: 600;
-            color: #1a3a5c;
+            color: #ff5757;
         }
 
         /* 計算ボタン（画面下部に固定） */
@@ -281,7 +282,7 @@
         .calculate-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 100%);
+            background: linear-gradient(135deg, #ff5757 0%, #ff8a80 100%);
             color: white;
             border: none;
             border-radius: 12px;
@@ -289,12 +290,12 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(26, 58, 92, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 87, 87, 0.3);
         }
 
         .calculate-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 58, 92, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 87, 87, 0.4);
         }
 
         .calculate-btn:active {
@@ -485,7 +486,7 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-left: 4px solid #1a3a5c;
+            border-left: 4px solid #ff5757;
         }
 
         .summary-label {
@@ -498,7 +499,7 @@
         .summary-value {
             font-size: 22px;
             font-weight: 700;
-            color: #1a3a5c;
+            color: #ff5757;
         }
 
         .summary-value.warning {
@@ -1113,7 +1114,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">MIKATA</div>
+            <div class="logo"><span style="color: #ff5757;">MI</span>KATA</div>
             <h1>住宅購入ライフプランシミュレーター</h1>
             <p>ご家族の未来を数字で「見える化」── 60年間の家計を堅実にシミュレーション</p>
             <button class="share-btn" onclick="openShareModal()">🔗 設定を共有</button>
@@ -1859,7 +1860,7 @@
                     <div style="margin-top: 20px; border-top: 2px solid #e0e0e0; padding-top: 20px;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                             <div class="input-label" style="margin-bottom: 0;">その他ローン</div>
-                            <button type="button" onclick="addOtherLoan()" style="padding: 6px 16px; background: #1a3a5c; color: white; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer;">＋ 追加</button>
+                            <button type="button" onclick="addOtherLoan()" style="padding: 6px 16px; background: #ff5757; color: white; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer;">＋ 追加</button>
                         </div>
                         <div id="otherLoansContainer">
                             <div class="other-loan-item" data-loan-index="0" style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; border: 1px solid #e0e0e0;">
@@ -3618,7 +3619,7 @@
                 indicator.classList.add('risk-high');
                 icon.textContent = '⚠️';
                 title.textContent = 'リスク高';
-                title.style.color = '#1a3a5c';
+                title.style.color = '#ff5757';
                 description.textContent = '将来的に貯蓄がマイナスになる可能性があります。収支の見直しをお勧めします。';
             } else if (finalSavings < 1000) {
                 indicator.classList.add('risk-medium');
@@ -3730,8 +3731,8 @@
                     datasets: [{
                         label: '年間収支',
                         data: cashflowData.map(d => d.annualCashflow),
-                        borderColor: '#1a3a5c',
-                        backgroundColor: 'rgba(26, 58, 92, 0.15)',
+                        borderColor: '#ff5757',
+                        backgroundColor: 'rgba(255, 87, 87, 0.15)',
                         borderWidth: 3,
                         pointRadius: 0,
                         pointHoverRadius: 6,
@@ -3862,8 +3863,8 @@
                     datasets: [{
                         label: '本人収入',
                         data: cashflowData.map(d => d.income1),
-                        borderColor: '#1a3a5c',
-                        backgroundColor: 'rgba(26, 58, 92, 0.15)',
+                        borderColor: '#ff5757',
+                        backgroundColor: 'rgba(255, 87, 87, 0.15)',
                         borderWidth: 3,
                         pointRadius: 0,
                         pointHoverRadius: 5,
@@ -3915,7 +3916,7 @@
                     datasets: [{
                         label: '生活費',
                         data: cashflowData.map(d => d.livingCost),
-                        backgroundColor: '#1a3a5c'
+                        backgroundColor: '#ff5757'
                     }, {
                         label: '住居費',
                         data: cashflowData.map(d => d.housingCost),
@@ -4311,7 +4312,7 @@
                     </div>
                     <div class="comparison-result">
                         <h3 style="margin-bottom: 15px; color: #333;">💰 差額</h3>
-                        <p style="font-size: 18px; color: ${isFixedBetter ? '#28a745' : '#1a3a5c'}; font-weight: 700; margin-bottom: 10px;">
+                        <p style="font-size: 18px; color: ${isFixedBetter ? '#28a745' : '#ff5757'}; font-weight: 700; margin-bottom: 10px;">
                             ${isFixedBetter ? '固定金利' : '変動金利'}の方が <strong>${formatMoney(Math.abs(difference))}</strong> お得
                         </p>
                         <p style="color: #666; font-size: 14px;">
@@ -4348,8 +4349,8 @@
                         datasets: [{
                             label: '固定金利',
                             data: fixed.schedule.map(d => d.payment),
-                            borderColor: '#1a3a5c',
-                            backgroundColor: 'rgba(26, 58, 92, 0.1)',
+                            borderColor: '#ff5757',
+                            backgroundColor: 'rgba(255, 87, 87, 0.1)',
                             tension: 0.3
                         }, {
                             label: '変動金利',
@@ -4376,8 +4377,8 @@
                         datasets: [{
                             label: '変動金利',
                             data: variable.schedule.map(d => d.rate),
-                            borderColor: '#1a3a5c',
-                            backgroundColor: 'rgba(26, 58, 92, 0.2)',
+                            borderColor: '#ff5757',
+                            backgroundColor: 'rgba(255, 87, 87, 0.2)',
                             fill: true,
                             tension: 0.3
                         }]
