@@ -3654,7 +3654,7 @@
             if (minSavings < 0) {
                 alertClass += '';
                 alertHTML = `<p>⚠️ <strong>警告：</strong>${minSavingsYear + 1}年目に総資産がマイナス（${formatMoney(minSavings)}）になる見込みです。</p>`;
-                alertHTML += `<p style="margin-top:8px; font-size:13px; color:#666;">💡 まずは家計の収支バランスの改善が優先です。物件価格・頭金・ローン期間の見直し、固定費の削減、配偶者の働き方の変更など、複数のパターンでシミュレーションしてみましょう。</p>`;
+                alertHTML += `<p style="margin-top:8px; font-size:13px; color:#666;">💡 支出の見直しや、収入アップの可能性を検討してみましょう。少額からの積立投資で長期的な資産形成を始めることも、リスク軽減の一つの方法です。</p>`;
             } else if (finalSavings < 1000) {
                 alertHTML = `<p>⚠️ <strong>注意：</strong>60年後の総資産が${formatMoney(finalSavings)}の見込みです。</p>`;
                 if (!hasInvestment) {
