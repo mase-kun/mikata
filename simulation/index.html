@@ -2905,11 +2905,14 @@
 
         // その他ローンの合計を年ごとに取得
         function getOtherLoansForYear(year) {
-            const items = document.querySelectorAll('.other-loan-item');
+            const items = document.querySelectorAll('.other-loan-item:not(.person2-work-pattern)');
             let total = 0;
             items.forEach(item => {
-                const amount = parseFloat(item.querySelector('.otherLoanAmount').value) || 0;
-                const years = parseInt(item.querySelector('.otherLoanYears').value) || 0;
+                const amountEl = item.querySelector('.otherLoanAmount');
+                const yearsEl = item.querySelector('.otherLoanYears');
+                if (!amountEl || !yearsEl) return;
+                const amount = parseFloat(amountEl.value) || 0;
+                const years = parseInt(yearsEl.value) || 0;
                 if (amount > 0) {
                     if (years === 0 || year < years) {
                         total += amount * 12;
@@ -2990,10 +2993,15 @@
             let matched = false;
 
             patterns.forEach(p => {
-                const type = p.querySelector('.workPatternType').value;
-                const incomeGross = parseFloat(p.querySelector('.workPatternIncome').value) || 0;
-                const start = parseInt(p.querySelector('.workPatternStart').value) || 0;
-                const end = parseInt(p.querySelector('.workPatternEnd').value) || 60;
+                const typeEl = p.querySelector('.workPatternType');
+                const incomeEl = p.querySelector('.workPatternIncome');
+                const startEl = p.querySelector('.workPatternStart');
+                const endEl = p.querySelector('.workPatternEnd');
+                if (!typeEl || !incomeEl) return;
+                const type = typeEl.value;
+                const incomeGross = parseFloat(incomeEl.value) || 0;
+                const start = parseInt(startEl?.value) || 0;
+                const end = parseInt(endEl?.value) || 60;
 
                 if (year >= start && year < end) {
                     matched = true;
@@ -3591,7 +3599,7 @@
                     livingCost: livingCost,
                     housingCost: housingCost,
                     educationCost: educationCost,
-                    totalExpense: totalExpenseYear,
+                    totalExpense: totalExpenseYear + investmentContribution + fireInsuranceCost + temporaryExpense,
                     annualCashflow: annualCashflow,
                     savings: savings,
                     investment: investment,
