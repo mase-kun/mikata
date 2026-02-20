@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIKATA - 家計キャッシュフロー・住宅購入シミュレーター</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         :root {
@@ -23,8 +26,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff5757 0%, #ff8a80 100%);
+            font-family: 'Noto Sans JP', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 100%);
             min-height: 100vh;
             padding: 20px;
             padding-bottom: 80px;
@@ -40,7 +43,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #ff5757 0%, #ff8a80 100%);
+            background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 100%);
             color: white;
             padding: 40px 30px;
             text-align: center;
@@ -64,7 +67,7 @@
 
         .share-btn:hover {
             background: white;
-            color: #ff5757;
+            color: #1a3a5c;
             transform: translateY(-2px);
         }
 
@@ -113,8 +116,8 @@
         .preset-btn {
             padding: 12px 24px;
             background: white;
-            border: 2px solid #ff5757;
-            color: #ff5757;
+            border: 2px solid #1a3a5c;
+            color: #1a3a5c;
             border-radius: 25px;
             font-size: 14px;
             font-weight: 600;
@@ -123,7 +126,7 @@
         }
 
         .preset-btn:hover {
-            background: #ff5757;
+            background: #1a3a5c;
             color: white;
             transform: translateY(-2px);
         }
@@ -173,7 +176,7 @@
             justify-content: center;
             width: 18px;
             height: 18px;
-            background: #ff5757;
+            background: #1a3a5c;
             color: white;
             border-radius: 50%;
             font-size: 12px;
@@ -219,14 +222,14 @@
         input[type="number"]:focus,
         select:focus {
             outline: none;
-            border-color: #ff5757;
-            box-shadow: 0 0 0 3px rgba(255, 87, 87, 0.1);
+            border-color: #1a3a5c;
+            box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.1);
         }
 
         input[type="range"] {
             padding: 0;
             height: 8px;
-            background: linear-gradient(to right, #ff5757, #ff8a80);
+            background: linear-gradient(to right, #1a3a5c, #2c5f8a);
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -236,7 +239,7 @@
             width: 20px;
             height: 20px;
             background: white;
-            border: 3px solid #ff5757;
+            border: 3px solid #1a3a5c;
             border-radius: 50%;
             cursor: pointer;
         }
@@ -252,7 +255,7 @@
             min-width: 60px;
             text-align: right;
             font-weight: 600;
-            color: #ff5757;
+            color: #1a3a5c;
         }
 
         /* 計算ボタン（画面下部に固定） */
@@ -278,7 +281,7 @@
         .calculate-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #ff5757 0%, #ff8a80 100%);
+            background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 100%);
             color: white;
             border: none;
             border-radius: 12px;
@@ -286,12 +289,12 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 87, 87, 0.3);
+            box-shadow: 0 4px 15px rgba(26, 58, 92, 0.3);
         }
 
         .calculate-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 87, 87, 0.4);
+            box-shadow: 0 6px 20px rgba(26, 58, 92, 0.4);
         }
 
         .calculate-btn:active {
@@ -482,7 +485,7 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-left: 4px solid #ff5757;
+            border-left: 4px solid #1a3a5c;
         }
 
         .summary-label {
@@ -495,7 +498,7 @@
         .summary-value {
             font-size: 22px;
             font-weight: 700;
-            color: #ff5757;
+            color: #1a3a5c;
         }
 
         .summary-value.warning {
@@ -532,12 +535,12 @@
         }
 
         .tab.active {
-            color: #ff5757;
-            border-bottom-color: #ff5757;
+            color: #1a3a5c;
+            border-bottom-color: #1a3a5c;
         }
 
         .tab:hover {
-            color: #ff5757;
+            color: #1a3a5c;
         }
 
         .tab-content {
@@ -563,7 +566,7 @@
             color: #222;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 3px solid #ff5757;
+            border-bottom: 3px solid #1a3a5c;
             text-align: left;
         }
 
@@ -636,7 +639,7 @@
         }
 
         th {
-            background: #ff5757;
+            background: #1a3a5c;
             color: white;
             font-weight: 600;
             position: sticky;
@@ -655,7 +658,7 @@
 
         th.year-column {
             z-index: 15;
-            background: #ff5757;
+            background: #1a3a5c;
         }
 
         tr:hover td {
@@ -696,7 +699,7 @@
         .loading {
             text-align: center;
             padding: 20px;
-            color: #ff5757;
+            color: #1a3a5c;
             font-weight: 600;
         }
 
@@ -749,7 +752,7 @@
         }
 
         input:checked + .slider-switch {
-            background-color: #ff5757;
+            background-color: #1a3a5c;
         }
 
         input:checked + .slider-switch:before {
@@ -782,7 +785,7 @@
             margin-bottom: 15px;
             text-align: center;
             padding-bottom: 10px;
-            border-bottom: 2px solid #ff5757;
+            border-bottom: 2px solid #1a3a5c;
         }
 
         .comparison-result {
@@ -823,7 +826,7 @@
         }
 
         .risk-indicator.risk-high {
-            border-left-color: #ff5757;
+            border-left-color: #1a3a5c;
             background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
         }
 
@@ -910,7 +913,7 @@
             left: 0;
             right: 0;
             height: 6px;
-            background: linear-gradient(to right, #ff5757, #ffc107, #28a745);
+            background: linear-gradient(to right, #c0392b, #c49b5a, #28a745);
             border-radius: 3px;
         }
 
@@ -930,7 +933,7 @@
         .timeline-marker {
             width: 24px;
             height: 24px;
-            background: #ff5757;
+            background: #1a3a5c;
             border: 4px solid white;
             border-radius: 50%;
             margin: 0 auto 15px;
@@ -954,7 +957,7 @@
         }
 
         .timeline-year {
-            color: #ff5757;
+            color: #1a3a5c;
             font-weight: 700;
         }
 
@@ -1037,13 +1040,13 @@
 
         .share-url:focus {
             outline: none;
-            border-color: #ff5757;
+            border-color: #1a3a5c;
         }
 
         .copy-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #ff5757 0%, #ff8a80 100%);
+            background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -1051,12 +1054,12 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 87, 87, 0.3);
+            box-shadow: 0 4px 15px rgba(26, 58, 92, 0.3);
         }
 
         .copy-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 87, 87, 0.4);
+            box-shadow: 0 6px 20px rgba(26, 58, 92, 0.4);
         }
 
         .copy-btn:active {
@@ -1094,7 +1097,7 @@
                 bottom: 0;
                 width: 6px;
                 height: auto;
-                background: linear-gradient(to bottom, #ff5757, #ffc107, #28a745);
+                background: linear-gradient(to bottom, #c0392b, #c49b5a, #28a745);
             }
 
             .risk-indicator {
@@ -1111,8 +1114,8 @@
     <div class="container">
         <div class="header">
             <div class="logo">MIKATA</div>
-            <h1>家計キャッシュフローシミュレーター</h1>
-            <p>必要最小限の入力で、60年間の家計をシミュレーション</p>
+            <h1>住宅購入ライフプランシミュレーター</h1>
+            <p>ご家族の未来を数字で「見える化」── 60年間の家計を堅実にシミュレーション</p>
             <button class="share-btn" onclick="openShareModal()">🔗 設定を共有</button>
         </div>
 
@@ -1141,6 +1144,7 @@
             <div class="preset-section">
                 <div class="preset-title">💡 よくあるケースから選んで簡単スタート</div>
                 <div class="preset-buttons">
+                    <button class="preset-btn" onclick="loadPreset('aichi')" style="border-color: #c49b5a; color: #c49b5a; font-weight: 700;">⭐ 伊藤家モデル</button>
                     <button class="preset-btn" onclick="loadPreset('average')">🏠 平均的な家庭</button>
                     <button class="preset-btn" onclick="loadPreset('dualIncome')">👔 共働き世帯</button>
                     <button class="preset-btn" onclick="loadPreset('highIncome')">💼 高収入世帯</button>
@@ -1732,11 +1736,11 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <div class="input-label" style="font-weight: 700; color: #ff5757;">
+                            <div class="input-label" style="font-weight: 700; color: #1a3a5c;">
                                 総額（自動計算）
                             </div>
                             <div class="input-wrapper">
-                                <input type="number" id="totalPriceCalc" value="5200" readonly style="background: #f8f9fa; font-weight: 700; color: #ff5757;">
+                                <input type="number" id="totalPriceCalc" value="5200" readonly style="background: #f8f9fa; font-weight: 700; color: #1a3a5c;">
                                 <span class="unit-label">万円</span>
                             </div>
                         </div>
@@ -1855,7 +1859,7 @@
                     <div style="margin-top: 20px; border-top: 2px solid #e0e0e0; padding-top: 20px;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                             <div class="input-label" style="margin-bottom: 0;">その他ローン</div>
-                            <button type="button" onclick="addOtherLoan()" style="padding: 6px 16px; background: #ff5757; color: white; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer;">＋ 追加</button>
+                            <button type="button" onclick="addOtherLoan()" style="padding: 6px 16px; background: #1a3a5c; color: white; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer;">＋ 追加</button>
                         </div>
                         <div id="otherLoansContainer">
                             <div class="other-loan-item" data-loan-index="0" style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; border: 1px solid #e0e0e0;">
@@ -2532,7 +2536,7 @@
                             <li><strong>保守的:</strong> 1-2%（債券中心、元本重視）</li>
                             <li><strong>バランス型:</strong> 3-4%（株式50%・債券50%）</li>
                             <li><strong>積極的:</strong> 5-7%（株式中心、長期運用前提）</li>
-                            <li style="margin-top: 8px; color: #ff5757;">⚠️ 過去の実績であり、将来を保証するものではありません</li>
+                            <li style="margin-top: 8px; color: #1a3a5c;">⚠️ 過去の実績であり、将来を保証するものではありません</li>
                         </ul>
                     </div>
                     </div><!-- accordion-body-inner -->
@@ -2743,6 +2747,11 @@
         // プリセット読み込み
         function loadPreset(type) {
             const presets = {
+                aichi: {
+                    person1Age: 35, person2Age: 33, totalIncome: 1050, numChildren: 2,
+                    propertyPrice: 5000, downPayment: 500, person1Income: 750, person2Income: 300,
+                    currentRent: 11.5, carCost: 50, basicLiving: 25
+                },
                 average: {
                     person1Age: 35, person2Age: 33, totalIncome: 800, numChildren: 2,
                     propertyPrice: 5000, downPayment: 500, person1Income: 500, person2Income: 300
@@ -2777,6 +2786,23 @@
             document.getElementById('child1Age').value = num >= 1 ? 5 : 0;
             document.getElementById('child2Age').value = num >= 2 ? 3 : 0;
             document.getElementById('child3Age').value = num >= 3 ? 1 : 0;
+
+            // 伊藤家モデル特有の設定
+            if (type === 'aichi') {
+                document.getElementById('child1Age').value = 5;
+                document.getElementById('child2Age').value = 2;
+                // 配偶者：時短勤務
+                document.getElementById('person2WorkType').value = 'parttime';
+                document.getElementById('person2PartIncome').value = 300;
+                togglePerson2WorkSettings();
+                // その他ローン：アルファードのカーローン
+                const loanItems = document.querySelectorAll('.other-loan-item');
+                if (loanItems.length > 0) {
+                    loanItems[0].querySelector('.otherLoanName').value = 'アルファード ローン';
+                    loanItems[0].querySelector('.otherLoanAmount').value = 5;
+                    loanItems[0].querySelector('.otherLoanYears').value = 5;
+                }
+            }
         }
 
         // 詳細設定トグル
@@ -3592,7 +3618,7 @@
                 indicator.classList.add('risk-high');
                 icon.textContent = '⚠️';
                 title.textContent = 'リスク高';
-                title.style.color = '#ff5757';
+                title.style.color = '#1a3a5c';
                 description.textContent = '将来的に貯蓄がマイナスになる可能性があります。収支の見直しをお勧めします。';
             } else if (finalSavings < 1000) {
                 indicator.classList.add('risk-medium');
@@ -3704,8 +3730,8 @@
                     datasets: [{
                         label: '年間収支',
                         data: cashflowData.map(d => d.annualCashflow),
-                        borderColor: '#ff5757',
-                        backgroundColor: 'rgba(255, 87, 87, 0.15)',
+                        borderColor: '#1a3a5c',
+                        backgroundColor: 'rgba(26, 58, 92, 0.15)',
                         borderWidth: 3,
                         pointRadius: 0,
                         pointHoverRadius: 6,
@@ -3836,8 +3862,8 @@
                     datasets: [{
                         label: '本人収入',
                         data: cashflowData.map(d => d.income1),
-                        borderColor: '#ff5757',
-                        backgroundColor: 'rgba(255, 87, 87, 0.15)',
+                        borderColor: '#1a3a5c',
+                        backgroundColor: 'rgba(26, 58, 92, 0.15)',
                         borderWidth: 3,
                         pointRadius: 0,
                         pointHoverRadius: 5,
@@ -3845,7 +3871,7 @@
                     }, {
                         label: '配偶者収入',
                         data: cashflowData.map(d => d.income2),
-                        borderColor: '#ff8a80',
+                        borderColor: '#2c5f8a',
                         backgroundColor: 'rgba(255, 138, 128, 0.15)',
                         borderWidth: 3,
                         pointRadius: 0,
@@ -3889,11 +3915,11 @@
                     datasets: [{
                         label: '生活費',
                         data: cashflowData.map(d => d.livingCost),
-                        backgroundColor: '#ff5757'
+                        backgroundColor: '#1a3a5c'
                     }, {
                         label: '住居費',
                         data: cashflowData.map(d => d.housingCost),
-                        backgroundColor: '#ff8a80'
+                        backgroundColor: '#2c5f8a'
                     }, {
                         label: '教育費',
                         data: cashflowData.map(d => d.educationCost),
@@ -3978,7 +4004,7 @@
                     datasets: [{
                         label: '元金',
                         data: loanSchedule.map(d => d.principal),
-                        backgroundColor: '#ff5757'
+                        backgroundColor: '#1a3a5c'
                     }, {
                         label: '利息',
                         data: loanSchedule.map(d => d.interest),
@@ -4285,7 +4311,7 @@
                     </div>
                     <div class="comparison-result">
                         <h3 style="margin-bottom: 15px; color: #333;">💰 差額</h3>
-                        <p style="font-size: 18px; color: ${isFixedBetter ? '#28a745' : '#ff5757'}; font-weight: 700; margin-bottom: 10px;">
+                        <p style="font-size: 18px; color: ${isFixedBetter ? '#28a745' : '#1a3a5c'}; font-weight: 700; margin-bottom: 10px;">
                             ${isFixedBetter ? '固定金利' : '変動金利'}の方が <strong>${formatMoney(Math.abs(difference))}</strong> お得
                         </p>
                         <p style="color: #666; font-size: 14px;">
@@ -4322,8 +4348,8 @@
                         datasets: [{
                             label: '固定金利',
                             data: fixed.schedule.map(d => d.payment),
-                            borderColor: '#ff5757',
-                            backgroundColor: 'rgba(255, 87, 87, 0.1)',
+                            borderColor: '#1a3a5c',
+                            backgroundColor: 'rgba(26, 58, 92, 0.1)',
                             tension: 0.3
                         }, {
                             label: '変動金利',
@@ -4350,8 +4376,8 @@
                         datasets: [{
                             label: '変動金利',
                             data: variable.schedule.map(d => d.rate),
-                            borderColor: '#ff5757',
-                            backgroundColor: 'rgba(255, 87, 87, 0.2)',
+                            borderColor: '#1a3a5c',
+                            backgroundColor: 'rgba(26, 58, 92, 0.2)',
                             fill: true,
                             tension: 0.3
                         }]
