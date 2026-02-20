@@ -1123,36 +1123,6 @@
         </div>
 
         <div class="content">
-            <!-- リスクインジケーター -->
-            <div class="risk-indicator" id="riskIndicator">
-                <div class="risk-content">
-                    <div class="risk-icon" id="riskIcon"></div>
-                    <div class="risk-text">
-                        <div class="risk-title" id="riskTitle">評価中...</div>
-                        <div class="risk-description" id="riskDescription"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- タイムライン -->
-            <div class="timeline-container" id="timelineContainer">
-                <div class="timeline-title">📅 ライフイベントタイムライン</div>
-                <div class="timeline">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-events" id="timelineEvents"></div>
-                </div>
-            </div>
-
-            <!-- プリセット選択 -->
-            <div class="preset-section">
-                <div class="preset-title">💡 よくあるケースから選んで簡単スタート</div>
-                <div class="preset-buttons">
-                    <button class="preset-btn" onclick="loadPreset('average')">🏠 平均的な家庭</button>
-                    <button class="preset-btn" onclick="loadPreset('dualIncome')">👔 共働き世帯</button>
-                    <button class="preset-btn" onclick="loadPreset('highIncome')">💼 高収入世帯</button>
-                    <button class="preset-btn" onclick="loadPreset('single')">👤 単身世帯</button>
-                </div>
-            </div>
 
             <!-- 簡易入力フォーム -->
             <div class="simple-input">
@@ -1265,7 +1235,7 @@
                         <div class="input-group">
                             <div class="input-label">配偶者の年収（額面）</div>
                             <div class="input-wrapper">
-                                <input type="number" id="person2Income" value="300" step="10" oninput="syncTotalIncome()">
+                                <input type="number" id="person2Income" value="300" step="10" oninput="syncTotalIncome(); syncWorkPatternIncome()">
                                 <span class="unit-label">万円</span>
                             </div>
                         </div>
@@ -1302,41 +1272,62 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-row">
-                        <div class="input-group">
-                            <div class="input-label">
-                                配偶者の就労形態
-                                <span class="help-icon" data-tip="パートや専業主婦など収入を得る期間を調整">?</span>
+                    <div class="advanced-section-title" style="margin-top: 20px; border-top: 2px solid #e0e0e0; padding-top: 15px;">
+                        👩‍💼 配偶者の就労パターン
+                    </div>
+                    <p style="font-size: 13px; color: #666; margin: 0 0 12px 0;">
+                        💡 時系列で就労形態を設定できます（複数パターン追加可能）
+                    </p>
+                    <div id="person2WorkPatternsContainer">
+                        <div class="other-loan-item person2-work-pattern" data-pattern-index="0" style="margin-bottom: 12px; padding: 12px; background: #f5f7fa; border-radius: 8px; border-left: 3px solid #2c5f8a;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <span style="font-weight: 600; font-size: 14px; color: #1a3a5c;">パターン1</span>
                             </div>
-                            <div class="input-wrapper">
-                                <select id="person2WorkType" onchange="togglePerson2WorkSettings()">
-                                    <option value="fulltime" selected>フルタイム（定年まで）</option>
-                                    <option value="parttime">パート・時短勤務</option>
-                                    <option value="homemaker">専業主婦（主夫）</option>
-                                    <option value="custom">期間を指定</option>
-                                </select>
+                            <div class="input-row" style="margin-bottom: 6px;">
+                                <div class="input-group">
+                                    <div class="input-label">就労形態</div>
+                                    <div class="input-wrapper">
+                                        <select class="workPatternType">
+                                            <option value="fulltime" selected>フルタイム</option>
+                                            <option value="parttime">パート・時短勤務</option>
+                                            <option value="homemaker">専業主婦（主夫）</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-label">年収（額面）</div>
+                                    <div class="input-wrapper">
+                                        <input type="number" class="workPatternIncome" value="300" step="10" min="0">
+                                        <span class="unit-label">万円</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-group" id="person2WorkPeriodGroup" style="display: none;">
-                            <div class="input-label">就労期間</div>
-                            <div style="display: flex; gap: 8px; align-items: center;">
-                                <input type="number" id="person2WorkStart" value="0" min="0" max="40" style="width: 80px; padding: 10px;">
-                                <span style="font-size: 13px;">年後から</span>
-                                <input type="number" id="person2WorkEnd" value="30" min="0" max="50" style="width: 80px; padding: 10px;">
-                                <span style="font-size: 13px;">年後まで</span>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <div class="input-label">開始</div>
+                                    <div class="input-wrapper">
+                                        <input type="number" class="workPatternStart" value="0" min="0" max="60">
+                                        <span class="unit-label">年後</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-label">終了</div>
+                                    <div class="input-wrapper">
+                                        <input type="number" class="workPatternEnd" value="30" min="0" max="60">
+                                        <span class="unit-label">年後</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="input-row" id="person2PartIncomeRow" style="display: none;">
-                        <div class="input-group">
-                            <div class="input-label">パート収入（年間・額面）</div>
-                            <div class="input-wrapper">
-                                <input type="number" id="person2PartIncome" value="120" step="10">
-                                <span class="unit-label">万円</span>
-                            </div>
-                        </div>
-                        <div class="input-group"></div>
-                    </div>
+                    <button type="button" onclick="addWorkPattern()" style="background: #2c5f8a; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 15px;">
+                        ＋ パターン追加
+                    </button>
+                    <!-- 後方互換用の隠しフィールド -->
+                    <input type="hidden" id="person2WorkType" value="fulltime">
+                    <input type="hidden" id="person2WorkStart" value="0">
+                    <input type="hidden" id="person2WorkEnd" value="30">
+                    <input type="hidden" id="person2PartIncome" value="120">
                     <div class="input-row">
                         <div class="input-group">
                             <div class="input-label">本人の年金（年間）</div>
@@ -2726,6 +2717,16 @@
             document.getElementById('totalIncomeValue').textContent = clamped + '万円';
         }
 
+        // 配偶者年収 → 就労パターン1の年収を同期
+        function syncWorkPatternIncome() {
+            const p2Income = parseFloat(document.getElementById('person2Income').value) || 0;
+            const firstPattern = document.querySelector('.person2-work-pattern');
+            if (firstPattern) {
+                const incomeInput = firstPattern.querySelector('.workPatternIncome');
+                if (incomeInput) incomeInput.value = p2Income;
+            }
+        }
+
         // 物件価格の自動計算
         function updateTotalPrice() {
             const land = parseFloat(document.getElementById('landPrice').value) || 0;
@@ -2927,14 +2928,94 @@
             return total;
         }
 
-        // 配偶者の就労形態切り替え
-        function togglePerson2WorkSettings() {
-            const workType = document.getElementById('person2WorkType').value;
-            const periodGroup = document.getElementById('person2WorkPeriodGroup');
-            const partIncomeRow = document.getElementById('person2PartIncomeRow');
+        // 配偶者の就労形態切り替え（後方互換用・新UIでは不使用）
+        function togglePerson2WorkSettings() {}
 
-            periodGroup.style.display = (workType === 'custom') ? 'block' : 'none';
-            partIncomeRow.style.display = (workType === 'parttime') ? 'flex' : 'none';
+        // 配偶者の就労パターン追加
+        let workPatternCount = 1;
+        function addWorkPattern() {
+            const container = document.getElementById('person2WorkPatternsContainer');
+            const index = workPatternCount;
+            workPatternCount++;
+            const div = document.createElement('div');
+            div.className = 'other-loan-item person2-work-pattern';
+            div.dataset.patternIndex = index;
+            div.style.cssText = 'margin-bottom: 12px; padding: 12px; background: #f5f7fa; border-radius: 8px; border-left: 3px solid #2c5f8a;';
+            div.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600; font-size: 14px; color: #1a3a5c;">パターン${index + 1}</span>
+                    <button type="button" onclick="removeWorkPattern(this)" style="background: #ff5757; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">✕ 削除</button>
+                </div>
+                <div class="input-row" style="margin-bottom: 6px;">
+                    <div class="input-group">
+                        <div class="input-label">就労形態</div>
+                        <div class="input-wrapper">
+                            <select class="workPatternType">
+                                <option value="fulltime">フルタイム</option>
+                                <option value="parttime" selected>パート・時短勤務</option>
+                                <option value="homemaker">専業主婦（主夫）</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-label">年収（額面）</div>
+                        <div class="input-wrapper">
+                            <input type="number" class="workPatternIncome" value="120" step="10" min="0">
+                            <span class="unit-label">万円</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <div class="input-label">開始</div>
+                        <div class="input-wrapper">
+                            <input type="number" class="workPatternStart" value="0" min="0" max="60">
+                            <span class="unit-label">年後</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-label">終了</div>
+                        <div class="input-wrapper">
+                            <input type="number" class="workPatternEnd" value="10" min="0" max="60">
+                            <span class="unit-label">年後</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        function removeWorkPattern(btn) {
+            const item = btn.closest('.person2-work-pattern');
+            if (item) item.remove();
+        }
+
+        // 就労パターンからその年の収入を計算（手取り変換あり）
+        function getPerson2IncomeForYear(year, person2Growth, person2Retire, age2, person2Pension) {
+            if (age2 >= person2Retire) return person2Pension;
+
+            const patterns = document.querySelectorAll('.person2-work-pattern');
+            let matchedIncome = 0;
+            let matched = false;
+
+            patterns.forEach(p => {
+                const type = p.querySelector('.workPatternType').value;
+                const incomeGross = parseFloat(p.querySelector('.workPatternIncome').value) || 0;
+                const start = parseInt(p.querySelector('.workPatternStart').value) || 0;
+                const end = parseInt(p.querySelector('.workPatternEnd').value) || 60;
+
+                if (year >= start && year < end) {
+                    matched = true;
+                    if (type === 'homemaker') {
+                        matchedIncome = 0;
+                    } else {
+                        matchedIncome = calculateTakeHome(incomeGross) * Math.pow(1 + person2Growth, year);
+                    }
+                }
+            });
+
+            if (!matched) return 0;
+            return matchedIncome;
         }
 
         // 比較モードトグル
@@ -3275,82 +3356,57 @@
                     income1 = person1Pension;
                 }
 
+                // 配偶者収入（就労パターンベース + 産休育休考慮）
                 let income2 = 0;
                 if (person2Age > 0) {
-                    if (person2WorkType === 'homemaker') {
-                        // 専業主婦：年金受給年齢まで収入0
-                        if (age2 >= person2Retire) {
-                            income2 = person2Pension;
-                        } else {
-                            income2 = 0;
+                    let baseIncome2 = getPerson2IncomeForYear(year, person2Growth, person2Retire, age2, person2Pension);
+
+                    // 産休育休チェック（baseIncomeが0でない＝就労中の場合のみ）
+                    if (baseIncome2 > 0 && age2 < person2Retire) {
+                        let isOnMaternity = false;
+                        let maternityIncome = 0;
+                        let isReturning = false;
+                        let returningRate = 1.0;
+
+                        if (child1Enabled && child1Age <= 0) {
+                            if (year >= child1MaternityStart && year < child1MaternityStart + child1MaternityDuration) {
+                                isOnMaternity = true;
+                                maternityIncome = child1MaternityAllowance;
+                            } else if (year >= child1MaternityStart + child1MaternityDuration && year < child1MaternityStart + child1MaternityDuration + 3) {
+                                isReturning = true;
+                                returningRate = Math.min(returningRate, child1ReturnWorkRate);
+                            }
                         }
-                    } else if (person2WorkType === 'parttime') {
-                        // パート：定年まで固定のパート収入
-                        if (age2 < person2Retire) {
-                            income2 = person2PartIncome * Math.pow(1 + person2Growth, year);
-                        } else {
-                            income2 = person2Pension;
+
+                        if (child2Enabled && child2Age <= 0) {
+                            if (year >= child2MaternityStart && year < child2MaternityStart + child2MaternityDuration) {
+                                isOnMaternity = true;
+                                maternityIncome = child2MaternityAllowance;
+                            } else if (year >= child2MaternityStart + child2MaternityDuration && year < child2MaternityStart + child2MaternityDuration + 3) {
+                                isReturning = true;
+                                returningRate = Math.min(returningRate, child2ReturnWorkRate);
+                            }
                         }
-                    } else if (person2WorkType === 'custom') {
-                        // 期間指定：指定期間内のみフルタイム収入
-                        if (age2 >= person2Retire) {
-                            income2 = person2Pension;
-                        } else if (year >= person2WorkStart && year < person2WorkEnd) {
-                            income2 = person2Income * Math.pow(1 + person2Growth, year);
+
+                        if (child3Enabled && child3Age <= 0) {
+                            if (year >= child3MaternityStart && year < child3MaternityStart + child3MaternityDuration) {
+                                isOnMaternity = true;
+                                maternityIncome = child3MaternityAllowance;
+                            } else if (year >= child3MaternityStart + child3MaternityDuration && year < child3MaternityStart + child3MaternityDuration + 3) {
+                                isReturning = true;
+                                returningRate = Math.min(returningRate, child3ReturnWorkRate);
+                            }
+                        }
+
+                        if (isOnMaternity) {
+                            income2 = maternityIncome;
+                        } else if (isReturning) {
+                            income2 = baseIncome2 * returningRate;
                         } else {
-                            income2 = 0;
+                            income2 = baseIncome2;
                         }
                     } else {
-                        // フルタイム（従来のロジック）
-                        if (age2 < person2Retire) {
-                            const baseIncome = person2Income * Math.pow(1 + person2Growth, year);
-
-                            // 子ども3人分の産休育休をチェック
-                            let isOnMaternity = false;
-                            let maternityIncome = 0;
-                            let isReturning = false;
-                            let returningRate = 1.0;
-
-                            if (child1Enabled && child1Age <= 0) {
-                                if (year >= child1MaternityStart && year < child1MaternityStart + child1MaternityDuration) {
-                                    isOnMaternity = true;
-                                    maternityIncome = child1MaternityAllowance;
-                                } else if (year >= child1MaternityStart + child1MaternityDuration && year < child1MaternityStart + child1MaternityDuration + 3) {
-                                    isReturning = true;
-                                    returningRate = Math.min(returningRate, child1ReturnWorkRate);
-                                }
-                            }
-
-                            if (child2Enabled && child2Age <= 0) {
-                                if (year >= child2MaternityStart && year < child2MaternityStart + child2MaternityDuration) {
-                                    isOnMaternity = true;
-                                    maternityIncome = child2MaternityAllowance;
-                                } else if (year >= child2MaternityStart + child2MaternityDuration && year < child2MaternityStart + child2MaternityDuration + 3) {
-                                    isReturning = true;
-                                    returningRate = Math.min(returningRate, child2ReturnWorkRate);
-                                }
-                            }
-
-                            if (child3Enabled && child3Age <= 0) {
-                                if (year >= child3MaternityStart && year < child3MaternityStart + child3MaternityDuration) {
-                                    isOnMaternity = true;
-                                    maternityIncome = child3MaternityAllowance;
-                                } else if (year >= child3MaternityStart + child3MaternityDuration && year < child3MaternityStart + child3MaternityDuration + 3) {
-                                    isReturning = true;
-                                    returningRate = Math.min(returningRate, child3ReturnWorkRate);
-                                }
-                            }
-
-                            if (isOnMaternity) {
-                                income2 = maternityIncome;
-                            } else if (isReturning) {
-                                income2 = baseIncome * returningRate;
-                            } else {
-                                income2 = baseIncome;
-                            }
-                        } else {
-                            income2 = person2Pension;
-                        }
+                        income2 = baseIncome2;
                     }
                 }
 
@@ -3654,9 +3710,7 @@
             `;
             document.getElementById('summaryCards').innerHTML = summaryHTML;
             
-            // リスク信号機とタイムラインを表示
-            updateRiskIndicator(minSavings, finalSavings);
-            updateTimeline(person1Age, loanStartYear, loanTerm, child1Age, child2Age, child3Age);
+            // リスク信号機とタイムラインは削除済み
         }
 
         function updateRiskIndicator(minSavings, finalSavings) {
